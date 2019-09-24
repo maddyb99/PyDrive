@@ -7,7 +7,11 @@ import threading
 
 
 def edge_trace(orig):
-    return cv2.Canny(cv2.cvtColor(orig, cv2.COLOR_BGR2GRAY), threshold1=400, threshold2=300)
+    normalized=np.zeros((600,800))
+    grey=np.zeros((600,800))
+    normalized=cv2.normalize(orig,normalized,1,255,cv2.NORM_MINMAX)
+    gray=cv2.cvtColor(normalized,cv2.COLOR_BGR2GRAY)
+    return cv2.Canny(gray, threshold1=300, threshold2=50)
 
 
 holding = {}
@@ -45,7 +49,7 @@ def show_fb():
     sct = mss.mss()
     pyk = PyKeyboard()
     while 1:
-        monitor = {'top': 20, 'left': 0, 'width': 800, 'height': 600}
+        monitor = {'top': 100, 'left': 100, 'width': 800, 'height': 600}
         img = sct.grab(monitor)
         img_np = np.array(img)
         frame = cv2.resize(
