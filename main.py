@@ -8,9 +8,14 @@ import threading
 
 def edge_trace(orig):
     normalized=np.zeros((600,800))
-    grey=np.zeros((600,800))
+    hsv=np.zeros((600,800))
+    gray=np.zeros((600,800))
+    hsv=cv2.cvtColor(orig,cv2.COLOR_BGR2HSV)
     normalized=cv2.normalize(orig,normalized,1,255,cv2.NORM_MINMAX)
     gray=cv2.cvtColor(normalized,cv2.COLOR_BGR2GRAY)
+    cv2.imshow('hsv',hsv)
+    cv2.imshow('normal',normalized)
+    cv2.imshow('gray',gray)
     return cv2.Canny(gray, threshold1=300, threshold2=50)
 
 
