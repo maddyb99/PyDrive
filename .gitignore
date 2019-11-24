@@ -2,3 +2,7 @@ venv/
 .idea/
 ./img/
 ./edge/
+./servicekey.jso
+./driving_dataset/*
+./img/*
+./edge/*
